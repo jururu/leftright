@@ -6,9 +6,11 @@ const MAX_CARDS = 3;
 const DRAG_THRESHOLD_RATIO = 0.25; // fraction of wrapper width
 const SPAWN_INTERVAL_BASE = 2000;  // ms between spawns at start
 const SPAWN_INTERVAL_MIN  = 900;
-const SPEED_BASE = 60;  // px/s
-const SPEED_MAX  = 380;
-const SPEED_RAMP = 14;  // px/s per correct answer
+const SPEED_BASE      = 60;   // px/s at start
+const SPEED_MAX       = 760;  // px/s at 150 correct (2× previous max)
+const SPEED_STEP_EVERY = 10;  // correct answers per speed tier
+const SPEED_TIERS     = 15;   // tiers to reach max (150 / 10)
+const SPEED_RAMP_STEP = (SPEED_MAX - SPEED_BASE) / SPEED_TIERS; // ~46.7 px/s per tier
 
 // ===== DOM refs =====
 const wrapper      = document.getElementById('game-wrapper');
@@ -195,7 +197,8 @@ function createCard() {
   const y = -cardSize;
 
   // Speed increases with correct answers
-  const speed = Math.min(SPEED_BASE + correctCount * SPEED_RAMP, SPEED_MAX);
+  const tier  = Math.floor(correctCount / SPEED_STEP_EVERY);
+  const speed = Math.min(SPEED_BASE + tier * SPEED_RAMP_STEP, SPEED_MAX);
 
   // DOM element
   const el = document.createElement('div');
