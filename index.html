@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>左右ドラッグゲーム</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-wrapper">
+    <!-- Start Screen -->
+    <div id="start-screen" class="screen active">
+      <div class="screen-content">
+        <h1 class="game-title">左右<br>ドラッグ</h1>
+        <p class="subtitle">カードを正しい方向へドラッグ！</p>
+        <div class="rules">
+          <div class="rule-item"><span class="rule-black">黒文字</span>→ 書かれた方向へ</div>
+          <div class="rule-item"><span class="rule-red">赤文字</span>→ 逆の方向へ</div>
+        </div>
+        <div id="hi-score-display" class="hi-score">BEST: <span id="hi-score-val">0</span></div>
+        <button id="start-btn" class="btn-start">START</button>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+      <div id="hud">
+        <div id="score-box">
+          <span class="hud-label">SCORE</span>
+          <span id="score">0</span>
+        </div>
+        <div id="lives-box">
+          <span class="hud-label">MISS</span>
+          <span id="lives">❤️❤️❤️</span>
+        </div>
+      </div>
+      <div id="field"></div>
+      <div id="hint-arrows">
+        <span class="hint-arrow">◀</span>
+        <span class="hint-arrow">▶</span>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen">
+      <div class="screen-content">
+        <h2 class="gameover-title">GAME OVER</h2>
+        <div class="result-score">SCORE: <span id="final-score">0</span></div>
+        <div class="result-best">BEST: <span id="final-hi">0</span></div>
+        <button id="retry-btn" class="btn-start">RETRY</button>
+      </div>
+    </div>
+
+    <!-- Overlay effects -->
+    <div id="miss-flash"></div>
+    <div id="correct-flash"></div>
+    <canvas id="particle-canvas"></canvas>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
