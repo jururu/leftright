@@ -129,6 +129,75 @@ html, body {
   letter-spacing: 2px;
 }
 
+/* ===== Volume controls ===== */
+.volume-controls {
+  width: 100%;
+  max-width: 280px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vol-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vol-label {
+  color: #aaa;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.vol-num {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  width: 26px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.vol-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.15);
+  outline: none;
+  cursor: pointer;
+}
+
+.vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px rgba(233,69,96,0.7);
+  cursor: pointer;
+}
+
+.vol-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px rgba(233,69,96,0.7);
+  border: none;
+  cursor: pointer;
+}
+
 .btn-start {
   background: linear-gradient(135deg, #e94560, #c0392b);
   color: #fff;

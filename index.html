@@ -21,6 +21,18 @@
           <div class="rule-item"><span class="rule-red">赤文字</span>→ 逆の方向へ</div>
         </div>
         <div id="hi-score-display" class="hi-score">BEST: <span id="hi-score-val">0</span></div>
+        <div class="volume-controls">
+          <div class="vol-row">
+            <label class="vol-label" for="vol-bgm">BGM</label>
+            <input type="range" id="vol-bgm" class="vol-slider" min="0" max="100" value="40">
+            <span class="vol-num" id="vol-bgm-num">40</span>
+          </div>
+          <div class="vol-row">
+            <label class="vol-label" for="vol-se">SE</label>
+            <input type="range" id="vol-se" class="vol-slider" min="0" max="100" value="70">
+            <span class="vol-num" id="vol-se-num">70</span>
+          </div>
+        </div>
         <button id="start-btn" class="btn-start">START</button>
       </div>
     </div>

@@ -37,6 +37,38 @@ let animFrameId = null;
 let lastTime = 0;
 let gameRunning = false;
 
+// ===== Volume state (0–1, persisted) =====
+let volBgm = parseFloat(localStorage.getItem('volBgm') ?? '0.4');
+let volSe  = parseFloat(localStorage.getItem('volSe')  ?? '0.7');
+
+// ===== Volume UI =====
+const volBgmSlider = document.getElementById('vol-bgm');
+const volSeSlider  = document.getElementById('vol-se');
+const volBgmNum    = document.getElementById('vol-bgm-num');
+const volSeNum     = document.getElementById('vol-se-num');
+
+function syncVolumeUI() {
+  volBgmSlider.value = Math.round(volBgm * 100);
+  volSeSlider.value  = Math.round(volSe  * 100);
+  volBgmNum.textContent = Math.round(volBgm * 100);
+  volSeNum.textContent  = Math.round(volSe  * 100);
+}
+syncVolumeUI();
+
+volBgmSlider.addEventListener('input', () => {
+  volBgm = volBgmSlider.value / 100;
+  volBgmNum.textContent = volBgmSlider.value;
+  localStorage.setItem('volBgm', volBgm);
+  // Apply to running BGM immediately
+  if (sounds['bgm']) sounds['bgm'].volume = volBgm;
+});
+
+volSeSlider.addEventListener('input', () => {
+  volSe = volSeSlider.value / 100;
+  volSeNum.textContent = volSeSlider.value;
+  localStorage.setItem('volSe', volSe);
+});
+
 // ===== Audio =====
 const sounds = {};
 
@@ -55,10 +87,9 @@ tryLoadSound('bgm',     'assets/bgm.mp3');
 function playSound(key) {
   const snd = sounds[key];
   if (!snd) return;
-  // Clone so overlapping plays work
   try {
     const clone = snd.cloneNode();
-    clone.volume = key === 'bgm' ? 0.4 : 0.7;
+    clone.volume = volSe;
     clone.play().catch(() => {});
   } catch (_) {}
 }
@@ -67,7 +98,7 @@ function startBgm() {
   const bgm = sounds['bgm'];
   if (!bgm) return;
   bgm.loop = true;
-  bgm.volume = 0.4;
+  bgm.volume = volBgm;
   bgm.currentTime = 0;
   bgm.play().catch(() => {});
 }
