@@ -7,8 +7,8 @@ const DRAG_THRESHOLD_RATIO = 0.25; // fraction of wrapper width
 const SPAWN_INTERVAL_BASE = 2000;  // ms between spawns at start
 const SPAWN_INTERVAL_MIN  = 900;
 const SPEED_BASE = 60;  // px/s
-const SPEED_MAX  = 200;
-const SPEED_RAMP = 8;   // px/s per correct answer
+const SPEED_MAX  = 380;
+const SPEED_RAMP = 14;  // px/s per correct answer
 
 // ===== DOM refs =====
 const wrapper      = document.getElementById('game-wrapper');
