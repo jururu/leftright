@@ -160,7 +160,7 @@ function createCard() {
   const fieldWidth  = field.offsetWidth;
   const cardSize = 110;
   const margin = 20;
-  const x = margin + Math.random() * (fieldWidth - cardSize - margin * 2);
+  const x = (fieldWidth - cardSize) / 2;
   const y = -cardSize;
 
   // Speed increases with correct answers
